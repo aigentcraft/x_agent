@@ -43,6 +43,16 @@ fi
 
 STRATEGY=$(cat "$STRATEGY_FILE")
 
+# --- テーマ上書き（Telegram Bot からの指定）---
+THEME_OVERRIDE="${X_AGENT_THEME_OVERRIDE:-}"
+if [[ -n "$THEME_OVERRIDE" ]]; then
+    STRATEGY="${STRATEGY}
+
+## 今回の指定テーマ（最優先）
+ユーザーから「${THEME_OVERRIDE}」というテーマが指定されました。
+このテーマを中心に投稿を生成してください。"
+fi
+
 echo "============================================================"
 echo " X投稿生成スクリプト（Claude Code CLI版）"
 echo " Opus = 司令塔 / Sonnet = 実行役"
